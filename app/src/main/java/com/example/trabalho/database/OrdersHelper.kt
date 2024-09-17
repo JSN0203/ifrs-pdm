@@ -13,12 +13,18 @@ class OrdersHelper(private val dbHelper: DatabaseHelper) {
         private const val COLUMN_OBS = "obs"
     }
 
-    val CREATE_TABLE = "CREATE TABLE $TABLE_ORDERS (" +
-            "$COLUMN_ID INTEGER PRIMARY KEY AUTOINCREMENT," +
-            "$COLUMN_DATE TEXT, " +
-            "$COLUMN_TOTAL_PRICE REAL, " +
-            "$COLUMN_STATUS TEXT, " +
-            "$COLUMN_OBS TEXT)"
+    fun createTable() {
+        dbHelper.writableDatabase.execSQL("CREATE TABLE $TABLE_ORDERS (" +
+                "$COLUMN_ID INTEGER PRIMARY KEY AUTOINCREMENT," +
+                "$COLUMN_DATE TEXT, " +
+                "$COLUMN_TOTAL_PRICE REAL, " +
+                "$COLUMN_STATUS TEXT, " +
+                "$COLUMN_OBS TEXT)")
+    }
+
+    fun dropTable() {
+        dbHelper.writableDatabase.execSQL("DROP TABLE IF EXISTS $TABLE_ORDERS")
+    }
 
     fun addOrder(order: Orders) {
         val db = dbHelper.writableDatabase
@@ -45,6 +51,7 @@ class OrdersHelper(private val dbHelper: DatabaseHelper) {
                     status = getString(getColumnIndexOrThrow(COLUMN_STATUS)),
                     obs = getString(getColumnIndexOrThrow(COLUMN_OBS))
                 )
+                orders.add(order)
             }
             close()
         }

@@ -14,13 +14,19 @@ class ClientHelper(private val dbHelper: DatabaseHelper) {
         private const val COLUMN_BIRTH_DATE = "birth_date"
     }
 
-    val CREATE_TABLE = "CREATE TABLE $TABLE_CLIENTS (" +
-            "$COLUMN_ID INTEGER PRIMARY KEY AUTOINCREMENT," +
-            "$COLUMN_NAME TEXT, " +
-            "$COLUMN_ADDRESS TEXT," +
-            "$COLUMN_PHONE TEXT, " +
-            "$COLUMN_EMAIL TEXT, " +
-            "$COLUMN_BIRTH_DATE TEXT)"
+    fun createTable() {
+        dbHelper.writableDatabase.execSQL("CREATE TABLE $TABLE_CLIENTS (" +
+                "$COLUMN_ID INTEGER PRIMARY KEY AUTOINCREMENT," +
+                "$COLUMN_NAME TEXT, " +
+                "$COLUMN_ADDRESS TEXT," +
+                "$COLUMN_PHONE TEXT, " +
+                "$COLUMN_EMAIL TEXT, " +
+                "$COLUMN_BIRTH_DATE TEXT)")
+    }
+
+    fun dropTable() {
+        dbHelper.writableDatabase.execSQL("DROP TABLE IF EXISTS $TABLE_CLIENTS")
+    }
 
     fun addClient(client: Clients) {
         val db = dbHelper.writableDatabase

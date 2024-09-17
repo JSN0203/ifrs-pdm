@@ -1,6 +1,7 @@
 package com.example.trabalho.database
 
 import android.content.ContentValues
+import android.database.sqlite.SQLiteDatabase
 import com.example.trabalho.models.Products
 
 class ProductsHelper(private val dbHelper: DatabaseHelper) {
@@ -13,12 +14,19 @@ class ProductsHelper(private val dbHelper: DatabaseHelper) {
         private const val COLUMN_QUANTITY = "quantity"
     }
 
-     val CREATE_TABLE = "CREATE TABLE $TABLE_PRODUCTS (" +
-             "$COLUMN_ID INTEGER PRIMARY KEY AUTOINCREMENT," +
-             "$COLUMN_NAME TEXT," +
-             "$COLUMN_DESCRIPTION TEXT," +
-             "$COLUMN_PRICE REAL," +
-             "$COLUMN_QUANTITY INTEGER)"
+    fun createTable() {
+        val db = dbHelper.writableDatabase
+        db.execSQL("CREATE TABLE $TABLE_PRODUCTS (" +
+                "$COLUMN_ID INTEGER PRIMARY KEY AUTOINCREMENT," +
+                "$COLUMN_NAME TEXT," +
+                "$COLUMN_DESCRIPTION TEXT," +
+                "$COLUMN_PRICE REAL," +
+                "$COLUMN_QUANTITY INTEGER)")
+    }
+
+    fun dropTable() {
+        dbHelper.writableDatabase.execSQL("DROP TABLE IF EXISTS $TABLE_PRODUCTS")
+    }
 
     fun addProduct(product: Products) {
         val db = dbHelper.writableDatabase
