@@ -14,8 +14,7 @@ class ProductsHelper(private val dbHelper: DatabaseHelper) {
         private const val COLUMN_QUANTITY = "quantity"
     }
 
-    fun createTable() {
-        val db = dbHelper.writableDatabase
+    fun createTable(db: SQLiteDatabase) {
         db.execSQL("CREATE TABLE $TABLE_PRODUCTS (" +
                 "$COLUMN_ID INTEGER PRIMARY KEY AUTOINCREMENT," +
                 "$COLUMN_NAME TEXT," +
@@ -24,8 +23,8 @@ class ProductsHelper(private val dbHelper: DatabaseHelper) {
                 "$COLUMN_QUANTITY INTEGER)")
     }
 
-    fun dropTable() {
-        dbHelper.writableDatabase.execSQL("DROP TABLE IF EXISTS $TABLE_PRODUCTS")
+    fun dropTable(db: SQLiteDatabase) {
+        db.execSQL("DROP TABLE IF EXISTS $TABLE_PRODUCTS")
     }
 
     fun addProduct(product: Products) {
@@ -40,7 +39,7 @@ class ProductsHelper(private val dbHelper: DatabaseHelper) {
         db.close()
     }
 
-    fun getProdutcs(): List<Products> {
+    fun getProducts(): List<Products> {
         val products = mutableListOf<Products>()
         val db = dbHelper.readableDatabase
         val cursor = db.query(TABLE_PRODUCTS, arrayOf(COLUMN_ID, COLUMN_NAME, COLUMN_PRICE, COLUMN_QUANTITY, COLUMN_DESCRIPTION), null, null, null, null, null)

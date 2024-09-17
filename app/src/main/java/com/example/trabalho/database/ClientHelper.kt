@@ -1,6 +1,7 @@
 package com.example.trabalho.database
 
 import android.content.ContentValues
+import android.database.sqlite.SQLiteDatabase
 import com.example.trabalho.models.Clients
 
 class ClientHelper(private val dbHelper: DatabaseHelper) {
@@ -14,8 +15,8 @@ class ClientHelper(private val dbHelper: DatabaseHelper) {
         private const val COLUMN_BIRTH_DATE = "birth_date"
     }
 
-    fun createTable() {
-        dbHelper.writableDatabase.execSQL("CREATE TABLE $TABLE_CLIENTS (" +
+    fun createTable(db: SQLiteDatabase) {
+        db.execSQL("CREATE TABLE $TABLE_CLIENTS (" +
                 "$COLUMN_ID INTEGER PRIMARY KEY AUTOINCREMENT," +
                 "$COLUMN_NAME TEXT, " +
                 "$COLUMN_ADDRESS TEXT," +
@@ -24,8 +25,8 @@ class ClientHelper(private val dbHelper: DatabaseHelper) {
                 "$COLUMN_BIRTH_DATE TEXT)")
     }
 
-    fun dropTable() {
-        dbHelper.writableDatabase.execSQL("DROP TABLE IF EXISTS $TABLE_CLIENTS")
+    fun dropTable(db: SQLiteDatabase) {
+        db.execSQL("DROP TABLE IF EXISTS $TABLE_CLIENTS")
     }
 
     fun addClient(client: Clients) {

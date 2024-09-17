@@ -14,7 +14,8 @@
         android:layout_width="match_parent"
         android:layout_height="60dp"
         android:layout_marginBottom="10dp"
-        android:backgroundTint="@color/design_default_color_primary"
+        android:backgroundTint="#2196F3"
+        android:textColor="@color/white"
         android:text="See Clients" />
 
     <Button
@@ -22,14 +23,16 @@
         android:layout_width="match_parent"
         android:layout_height="60dp"
         android:layout_marginBottom="10dp"
-        android:backgroundTint="@color/material_dynamic_primary30"
+        android:backgroundTint="#4CAF50"
+        android:textColor="@color/white"
         android:text="See Orders"/>
 
     <Button
         android:id="@+id/btnToProducts"
         android:layout_width="match_parent"
         android:layout_height="60dp"
-        android:backgroundTint="@color/material_dynamic_tertiary20"
+        android:backgroundTint="#FF9800"
+        android:textColor="@color/white"
         android:text="See Products"/>
 
 </LinearLayout>

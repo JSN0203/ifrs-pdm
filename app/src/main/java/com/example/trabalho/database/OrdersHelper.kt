@@ -1,6 +1,7 @@
 package com.example.trabalho.database
 
 import android.content.ContentValues
+import android.database.sqlite.SQLiteDatabase
 import com.example.trabalho.models.Orders
 
 class OrdersHelper(private val dbHelper: DatabaseHelper) {
@@ -13,8 +14,8 @@ class OrdersHelper(private val dbHelper: DatabaseHelper) {
         private const val COLUMN_OBS = "obs"
     }
 
-    fun createTable() {
-        dbHelper.writableDatabase.execSQL("CREATE TABLE $TABLE_ORDERS (" +
+    fun createTable(db: SQLiteDatabase) {
+        db.execSQL("CREATE TABLE $TABLE_ORDERS (" +
                 "$COLUMN_ID INTEGER PRIMARY KEY AUTOINCREMENT," +
                 "$COLUMN_DATE TEXT, " +
                 "$COLUMN_TOTAL_PRICE REAL, " +
@@ -22,8 +23,8 @@ class OrdersHelper(private val dbHelper: DatabaseHelper) {
                 "$COLUMN_OBS TEXT)")
     }
 
-    fun dropTable() {
-        dbHelper.writableDatabase.execSQL("DROP TABLE IF EXISTS $TABLE_ORDERS")
+    fun dropTable(db: SQLiteDatabase) {
+        db.execSQL("DROP TABLE IF EXISTS $TABLE_ORDERS")
     }
 
     fun addOrder(order: Orders) {

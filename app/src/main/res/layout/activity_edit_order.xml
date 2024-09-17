@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_height="match_parent"
+    xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
+    android:layout_height="match_parent"
     android:orientation="vertical"
     android:padding="16dp"
     android:layout_marginTop="20dp"
-    tools:context=".activities.OrderActivity">
+    tools:context=".activities.EditOrderActivity">
 
     <EditText
         android:id="@+id/etDate"
@@ -43,25 +43,23 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        android:gravity="center" >
-        <Button
-            android:id="@+id/btnGoBack"
-            android:layout_width="90dp"
-            android:layout_height="50dp"
-            android:text="Go back" />
+        android:gravity="center">
 
         <Button
-            android:id="@+id/btnAdd"
-            android:layout_width="130dp"
-            android:layout_height="50dp"
-            android:text="Add Order"
+            android:id="@+id/btnDelete"
+            android:layout_width="90dp"
+            android:layout_height="wrap_content"
+            android:text="Delete"
+            android:backgroundTint="@color/design_default_color_error"
+            android:textColor="@color/white" />
+
+        <Button
+            android:id="@+id/btnSave"
+            android:layout_width="120dp"
+            android:layout_height="wrap_content"
+            android:text="Save"
             android:backgroundTint="@color/design_default_color_primary"
             android:textColor="@color/white"/>
     </LinearLayout>
-
-    <ListView
-        android:id="@+id/lvOrders"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
 
 </LinearLayout>
