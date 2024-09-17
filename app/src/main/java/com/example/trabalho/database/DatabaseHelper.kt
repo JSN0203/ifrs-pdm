@@ -11,8 +11,13 @@ open class DatabaseHelper(context: Context) : SQLiteOpenHelper(context, DATABASE
     }
 
     override fun onCreate(db: SQLiteDatabase?) {
-        val th = TestHelper(this)
-        db?.execSQL(th.CREATE_TABLE)
+        val ch = ClientHelper(this)
+        val oh = OrdersHelper(this)
+        val ph = ProductsHelper(this)
+
+        db?.execSQL(ch.CREATE_TABLE)
+        db?.execSQL(oh.CREATE_TABLE)
+        db?.execSQL(ph.CREATE_TABLE)
     }
 
     override fun onUpgrade(p0: SQLiteDatabase?, p1: Int, p2: Int) {
